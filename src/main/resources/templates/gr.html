@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Ventes</title>
+</head>
+<body>
+<h1>Liste des Ventes</h1>
+<ul>
+    <li th:each="vente : ${ventes}">
+        <h2 th:text="${vente.client.nom}"></h2>
+        <ul>
+            <li th:each="ligne : ${vente.lignesDeVente}">
+                <span th:text="${ligne.produit.nom}"></span>
+                <span> - </span>
+                <span th:text="${ligne.quantite}"></span>
+                <span> x </span>
+                <span th:text="${ligne.prixUnitaire}"></span>
+                <span> = </span>
+                <span th:text="${ligne.montantTotal}"></span>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
+
