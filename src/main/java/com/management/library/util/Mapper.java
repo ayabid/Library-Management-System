@@ -1,13 +1,7 @@
 package com.management.library.util;
 
-import com.management.library.entity.Author;
-import com.management.library.entity.Book;
-import com.management.library.entity.Category;
-import com.management.library.entity.Publisher;
-import com.management.library.vo.AuthorRecord;
-import com.management.library.vo.BookRecord;
-import com.management.library.vo.CategoryRecord;
-import com.management.library.vo.PublisherRecord;
+import com.management.library.entity.*;
+import com.management.library.vo.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +14,18 @@ public class Mapper {
                     vo.getDescription());
             return bookVo;
         }).collect(Collectors.toList());
+    }
+    public static List<MemberRecord> memberModelToVo(List<Member> members) {
+        return members.stream()
+                .map(member -> new MemberRecord(
+                        member.getId(),
+                        member.getIdCard(),
+                        member.getName(),
+                        member.getAddress(),
+                        member.getEmail(),
+                        member.getPhone()
+                ))
+                .collect(Collectors.toList());
     }
 
     public static List<AuthorRecord> authorModelToVo(List<Author> authors) {

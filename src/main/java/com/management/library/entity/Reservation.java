@@ -3,6 +3,7 @@ package com.management.library.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @AllArgsConstructor
@@ -17,36 +18,26 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name = "client_code", length = 50, nullable = false)
-    private String clientCode;
-
-    @Column(name = "client_name", length = 100, nullable = false)
-    private String clientName;
-
-    @Column(name = "client_phone", length = 20, nullable = false)
-    private String clientPhone;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
-    private Book book;
-
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "reservation_date", nullable = false)
     private Date reservationDate;
 
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "return_date", nullable = false)
     private Date returnDate;
 
     @Column(name = "status", length = 20, nullable = false)
-    private String status; // Statut de la réservation : réservé ou rendu
+    private String status;
 
-    @Transient
-    private String bookName;
-    public String getBookName() {
-        return book != null ? book.getName() : null;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book book;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    private Member member;
+
+
 
 
 }

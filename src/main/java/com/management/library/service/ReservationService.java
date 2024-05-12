@@ -8,13 +8,10 @@ import java.util.List;
 public interface ReservationService {
 
     List<Reservation> findAllReservations();
-
+    List<Reservation> searchReservations(String keyword);
     Reservation findReservationById(Long id);
-
-    void addReservation(Long bookId, Reservation reservation);
+    void createReservation(Reservation reservation);
     void updateReservation(Reservation reservation);
-
     void deleteReservation(Long id);
-
-    List<Book> getAllBooks();
+    void changeReservationStatus(Long id, String newStatus);
 }

@@ -2,10 +2,7 @@ package com.management.library.service;
 
 import com.management.library.constant.Item;
 import com.management.library.util.Mapper;
-import com.management.library.vo.AuthorRecord;
-import com.management.library.vo.BookRecord;
-import com.management.library.vo.CategoryRecord;
-import com.management.library.vo.PublisherRecord;
+import com.management.library.vo.*;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
@@ -18,24 +15,22 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static com.management.library.constant.Item.BOOK;
 @Service
 public class FileServiceImpl implements FileService {
 
     final BookService bookService;
-
     final AuthorService authorService;
-
     final PublisherService publisherService;
-
     final CategoryService categoryService;
+    final MemberService memberService; // Ajout du service de membre
 
     public FileServiceImpl(BookService bookService, AuthorService authorService, PublisherService publisherService,
-                           CategoryService categoryService) {
-        this.authorService = authorService;
-        this.categoryService = categoryService;
-        this.publisherService = publisherService;
+                           CategoryService categoryService, MemberService memberService) {
         this.bookService = bookService;
+        this.authorService = authorService;
+        this.publisherService = publisherService;
+        this.categoryService = categoryService;
+        this.memberService = memberService; // Initialisation du service de membre
     }
 
     @Override
@@ -63,8 +58,11 @@ public class FileServiceImpl implements FileService {
                 StatefulBeanToCsv<PublisherRecord> writer4 = getWriter(response.getWriter());
                 writer4.write(Mapper.publisherModelToVo(publisherService.findAllPublishers()));
                 break;
+            case MEMBER: // Ajout de l'exportation pour les membres
+                StatefulBeanToCsv<MemberRecord> writer5 = getWriter(response.getWriter());
+                writer5.write(Mapper.memberModelToVo(memberService.findAllMembers()));
+                break;
         }
-
     }
 
     private static <T> StatefulBeanToCsv<T> getWriter(PrintWriter printWriter) {

@@ -2,66 +2,104 @@ package com.management.library.controller;
 
 import com.management.library.entity.Reservation;
 import com.management.library.entity.Book;
+import com.management.library.service.MemberService;
 import com.management.library.service.ReservationService;
 import com.management.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 public class ReservationController {
 
-    private final ReservationService reservationService;
-    private final BookService bookService;
+    @Autowired
+    private ReservationService reservationService;
 
     @Autowired
-    public ReservationController(ReservationService reservationService, BookService bookService) {
-        this.reservationService = reservationService;
-        this.bookService = bookService;
-    }
+    private BookService bookService;
 
-    @GetMapping("/reservations")
+    @Autowired
+    private MemberService memberService;
+
+    @RequestMapping("/reservations")
     public String findAllReservations(Model model) {
         List<Reservation> reservations = reservationService.findAllReservations();
         model.addAttribute("reservations", reservations);
         return "list-reservations";
     }
 
-    @GetMapping("/add-reservation")
-    public String showAddReservationForm(Model model) {
+    @RequestMapping("/searchReservation")
+    public String searchReservation(@Param("keyword") String keyword, Model model) {
+        List<Reservation> reservations = reservationService.searchReservations(keyword);
+        model.addAttribute("reservations", reservations);
+        model.addAttribute("keyword", keyword);
+        return "list-reservations";
+    }
+
+    @RequestMapping("/reservation/{id}")
+    public String findReservationById(@PathVariable("id") Long id, Model model) {
+        Reservation reservation = reservationService.findReservationById(id);
+        model.addAttribute("reservation", reservation);
+        return "list-reservation";
+    }
+
+    @GetMapping("/addReservation")
+    public String showCreateReservationForm(Model model) {
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("books", bookService.findAllBooks());
+        model.addAttribute("members", memberService.findAllMembers());
         return "add-reservation";
     }
-    @PostMapping("/add-reservation")
-    public String addReservation(@ModelAttribute("reservation") Reservation reservation, Model model) {
-        Long bookId = reservation.getBook().getId(); // Auparavant, on recevait l'objet complet "Livre" via reservation.getBook().
-        // La nouvelle méthode attend uniquement l'ID du livre. On récupère donc l'ID du livre sélectionné.
-        reservationService.addReservation(bookId, reservation); // On passe l'ID du livre et l'objet réservation au service.
+
+    @PostMapping("/addReservation")
+    public String createReservation(@ModelAttribute("reservation") Reservation reservation, BindingResult result) {
+        if (result.hasErrors()) {
+            return "add-reservation";
+        }
+        // Il est possible que vous ayez besoin de mettre à jour votre service pour gérer les objets Book et Member, pas seulement leurs IDs
+        reservationService.createReservation(reservation);
         return "redirect:/reservations";
     }
 
 
-    @GetMapping("/updatereservation/{id}")
+    @GetMapping("/updateReservation/{id}")
     public String showUpdateReservationForm(@PathVariable("id") Long id, Model model) {
         Reservation reservation = reservationService.findReservationById(id);
         model.addAttribute("reservation", reservation);
         model.addAttribute("books", bookService.findAllBooks());
+        model.addAttribute("members", memberService.findAllMembers());
         return "update-reservation";
     }
-
-    @PostMapping("/updatereservation/{id}")
-    public String updateReservation(@PathVariable("id") Long id, @ModelAttribute("reservation") Reservation reservation, Model model) {
+    @PostMapping("/updateReservation/{id}")
+    public String updateReservation(@PathVariable("id") Long id, @ModelAttribute("reservation") Reservation reservation, BindingResult result) {
+        if (result.hasErrors()) {
+            return "update-reservation";
+        }
         reservationService.updateReservation(reservation);
         return "redirect:/reservations";
     }
 
-    @GetMapping("/removereservation/{id}")
+
+    @RequestMapping("/deleteReservation/{id}")
     public String deleteReservation(@PathVariable("id") Long id) {
         reservationService.deleteReservation(id);
         return "redirect:/reservations";
     }
-}
+    @GetMapping("/change-reservation-status/{id}")
+    public String changeReservationStatus(@PathVariable("id") Long id, @RequestParam("newStatus") String newStatus) {
+        try {
+            reservationService.changeReservationStatus(id, newStatus);
+            return "redirect:/reservations";
+        } catch (IllegalArgumentException e) {
+            // Si le nouveau statut fourni n'est pas valide
+            // Gérer l'erreur, par exemple, rediriger vers une page d'erreur ou afficher un message d'erreur
+            return "redirect:/error"; // Redirection vers une page d'erreur
+        }
+}}
+
+
+

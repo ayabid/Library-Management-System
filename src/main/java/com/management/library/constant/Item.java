@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum Item {
-    BOOK("all-book", "Book-List.csv"), CATEGORY("all-category", "Category-List.csv"),
+    BOOK("all-book", "Book-List.csv"),MEMBER("all-member", "Member-List.csv"), CATEGORY("all-category", "Category-List.csv"),
     PUBLISHER("all-publisher", "Publisher-List.csv"), AUTHOR("all-author", "Author-List.csv");
 
     private final String name;

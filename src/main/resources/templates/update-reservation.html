@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Reservation</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container my-5">
+  <h3>Update Reservation</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="col-md-10">
+        <form action="#" th:action="@{/updateReservation/{id}(id=${reservation.id})}" method="post" th:object="${reservation}">
+          <div class="row">
+
+            <div class="form-group col-md-8">
+              <label for="bookId" class="col-form-label">Book:</label>
+              <select class="form-control" id="bookId" name="bookId" th:field="*{book.id}">
+                <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="memberId" class="col-form-label">Member:</label>
+              <select class="form-control" id="memberId" name="memberId" th:field="*{member.id}">
+                <option th:each="member : ${members}" th:value="${member.id}" th:text="${member.name}"></option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="reservationDate" class="col-form-label">Reservation Date:</label>
+              <input type="date" class="form-control" id="reservationDate" name="reservationDate" th:field="*{reservationDate}">
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="returnDate" class="col-form-label">Return Date:</label>
+              <input type="date" class="form-control" id="returnDate" name="returnDate" th:field="*{returnDate}">
+            </div>
+
+            <div class="form-group col-md-8">
+              <label for="status" class="col-form-label">Status:</label>
+              <select class="form-control" id="status" name="status" th:field="*{status}">
+                <option value="reserved">Reserved</option>
+                <option value="returned">Returned</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <input type="submit" class="btn btn-success" value="Update">
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>
