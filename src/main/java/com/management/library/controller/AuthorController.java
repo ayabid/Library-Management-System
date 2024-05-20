@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
+
 @Controller
 
 public class AuthorController {
@@ -23,7 +24,7 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @RequestMapping("/authors")
+    @GetMapping("/authors")
     public String findAllAuthors(Model model, @RequestParam("page") Optional<Integer> page,
                                  @RequestParam("size") Optional<Integer> size) {
 

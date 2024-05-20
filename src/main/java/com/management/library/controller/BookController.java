@@ -1,11 +1,11 @@
 package com.management.library.controller;
 
 import com.management.library.entity.Book;
+import com.management.library.entity.Member;
 import com.management.library.service.AuthorService;
 import com.management.library.service.BookService;
 import com.management.library.service.CategoryService;
 import com.management.library.service.PublisherService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -44,6 +44,10 @@ public class BookController {
 
         model.addAttribute("books", bookPage);
 
+        // Ajout du nombre total de livres
+        int totalCount = bookService.findAllBooks().size();
+        model.addAttribute("totalCount", totalCount);
+
         var totalPages = bookPage.getTotalPages();
         if (totalPages > 0) {
             var pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
@@ -51,6 +55,8 @@ public class BookController {
         }
         return "list-books";
     }
+
+
 
     @RequestMapping("/searchBook")
     public String searchBook(@Param("keyword") String keyword, Model model) {

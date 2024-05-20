@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+<nav class="sidebar sidebar-offcanvas" id="sidebar" th:fragment="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="nav-profile-image">
+                    <img src="/images/faces/face1.jpg" alt="profile" />
+                    <span class="login-status online"></span>
+                    <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                    <span class="font-weight-bold mb-2">Admin</span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  href="/">
+                <span class="menu-title">Dashboard</span>
+
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/members">
+                <span class="menu-title">Members</span>
+
+            </a>
+        </li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="/categories">
+                <span class="menu-title">Categories</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/books">
+                <span class="menu-title">Books</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/publishers">
+                <span class="menu-title">Publishers</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/authors">
+                <span class="menu-title">Authors</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/reservations">
+                <span class="menu-title">Reservations</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<script src="/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="/vendors/chart.js/chart.umd.js"></script>
+<script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/js/off-canvas.js"></script>
+<script src="/js/misc.js"></script>
+<script src="/js/settings.js"></script>
+<script src="/js/todolist.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="/js/dashboard.js"></script>
+<!-- End custom js for this page -->
+</body>
+</html>

@@ -5,6 +5,9 @@ import com.management.library.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @Controller
 public class MemberController {
     final MemberService memberService;
@@ -15,7 +18,9 @@ public class MemberController {
 
     @RequestMapping("/members")
     public String findAllMembers(Model model) {
-        model.addAttribute("members", memberService.findAllMembers());
+        List<Member> members = memberService.findAllMembers();
+        model.addAttribute("members", members);
+        model.addAttribute("memberCount", members.size());
         return "list-members";
     }
 

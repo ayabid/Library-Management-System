@@ -1,61 +1,81 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Header</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-
+    <title>Title</title>
 </head>
-
 <body>
 
-<nav th:fragment= "header" class="navbar navbar-expand-lg navbar-dark" style="background-color: #3A5A81; color: white;">
-    <a class="navbar-brand">Library Management System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-
-        <ul class="navbar-nav mr-auto" >
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/members">Books </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/categories">Categories </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/books">Books </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/publishers">Publishers </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/authors">Authors </a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="/reservations">Reservations</a>
-            </li>
-
-        </ul>
-
-        <form th:action="@{/searchBook}" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" name= "keyword" id = "keyword" type="text" placeholder="Search" aria-label="Search" th:value="${keyword}">
-            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-        </form>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/images/favicon.png" />
+</head>
+<body>
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" th:fragment="header">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+        <img src="/images/logo.png" alt="Logo" width="90" height="100" style="margin-left: 80px;">
 
     </div>
-</nav>
 
+
+    <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+        </button>
+
+        <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+
+
+                       <h4>Library Management Systemy</h4>
+
+                </a>
+                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+
+                    <a class="dropdown-item" href="#">
+                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script src="/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="/vendors/chart.js/chart.umd.js"></script>
+<script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/js/off-canvas.js"></script>
+<script src="/js/misc.js"></script>
+<script src="/js/settings.js"></script>
+<script src="/js/todolist.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="/js/dashboard.js"></script>
+<!-- End custom js for this page -->
 </body>
 </html>

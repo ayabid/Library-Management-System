@@ -1,50 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Member Details</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Admin</title>
+    <!-- CSS plugins -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- Plugin CSS for this page -->
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <!-- Injected CSS -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/images/favicon.png" />
 </head>
 <body>
-<div th:insert="fragments/header :: header"></div>
-<div class="container my-2">
-    <div class="card">
-        <div class="card-body">
-            <div class="container my-5">
-                <div class="col-md-12">
-                    <div >
-                        <table class="table table-striped table-responsive-md">
-                            <thead>
-                            <tr>
-                                <th>ID Card</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr >
-                                <td th:text="${member.idCard}"></td>
-                                <td th:text="${member.name}"></td>
-                                <td th:text="${member.address}"></td>
-                                <td th:text="${member.email}"></td>
-                                <td th:text="${member.phone}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
+<div class="container-scroller">
+    <span th:replace="fragments/header :: header"></span>
+    <div class="container-fluid page-body-wrapper">
+        <span th:replace="fragments/sidebar :: sidebar"></span>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h3 class="page-title">Member Detail</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3>Member Information</h3>
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <th>ID Card:</th>
+                                                    <td><span th:text="${member.idCard}"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Name:</th>
+                                                    <td><span th:text="${member.name}"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Address:</th>
+                                                    <td><span th:text="${member.address}"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email:</th>
+                                                    <td><span th:text="${member.email}"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Phone:</th>
+                                                    <td><span th:text="${member.phone}"></span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div th:insert="fragments/footer :: footer"></div>
+<!-- JS plugins -->
+<script src="/vendors/js/vendor.bundle.base.js"></script>
+<script src="/js/off-canvas.js"></script>
+<script src="/js/misc.js"></script>
+<script src="/js/todolist.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 </body>
-
 </html>

@@ -48,7 +48,7 @@ import java.util.List;
             // Récupérer le livre associé à la réservation
             Book book = bookService.findBookById(reservation.getBook().getId());
             if (book == null) {
-                throw new IllegalArgumentException("Invalid book ID");
+                throw new NotFoundException("Invalid book ID");
             }
 
             // Définir le livre associé à la réservation
@@ -57,7 +57,7 @@ import java.util.List;
             // Récupérer le membre associé à la réservation
             Member member = memberService.findMemberById(reservation.getMember().getId());
             if (member == null) {
-                throw new IllegalArgumentException("Invalid member ID");
+                throw new NotFoundException("Invalid member ID");
             }
 
             // Enregistrer la réservation

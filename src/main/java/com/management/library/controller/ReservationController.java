@@ -29,10 +29,12 @@ public class ReservationController {
     public String findAllReservations(Model model) {
         List<Reservation> reservations = reservationService.findAllReservations();
         model.addAttribute("reservations", reservations);
+        model.addAttribute("reservationCount", reservations.size());
         return "list-reservations";
     }
 
-    @RequestMapping("/searchReservation")
+
+    @GetMapping("/searchReservation")
     public String searchReservation(@Param("keyword") String keyword, Model model) {
         List<Reservation> reservations = reservationService.searchReservations(keyword);
         model.addAttribute("reservations", reservations);
